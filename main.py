@@ -3,9 +3,9 @@ from flet import Page, Row, Column, Container, Text, TextField, Checkbox, Slider
 import random
 
 
-NUMBERS = '023456789'
-UPPER = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
-LOWER = 'abcdefghijkmnpqrstuvwxyz'
+NUMBERS = '0123456789'
+UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+LOWER = 'abcdefghijklmnopqrstuvwxyz'
 SYMBOLS_BASE = '!@#$%^&*'
 SYMBOLS_ADVANCE = '()[]{}<>/|\\=+-_.,\'\":;?~'
 SIMILAR = '1Il0Oo'
@@ -36,7 +36,7 @@ def main(page: Page):
     cb_upper = checkbox_signs("Uppercase")
     cb_lower = checkbox_signs("Lowercase")
     cb_symbols = checkbox_signs("Symbols")
-    cb_similar = checkbox_signs("Similar", value_cond=False)
+    cb_exclude_similar = checkbox_signs("Exclude similar", value_cond=True)
     
     def text_signs(text):
         return Text(text, color=ft.colors.with_opacity(0.5, ft.colors.PRIMARY))
@@ -51,7 +51,6 @@ def main(page: Page):
     upper = Row([cb_upper, text_upper])
     lower = Row([cb_lower, text_lower])
     symbols_base = Row([cb_symbols, text_symbols_base])
-    similar = Row([cb_similar, text_similar])
     
     table_checkboxes = ft.DataTable(
         horizontal_margin=0,
@@ -82,7 +81,7 @@ def main(page: Page):
                 ]),
             ft.DataRow(cells=[
                 ft.DataCell(text_similar),
-                ft.DataCell(cb_similar),
+                ft.DataCell(cb_exclude_similar),
                 ]),
             ],
     )
@@ -124,18 +123,26 @@ def main(page: Page):
     
     def cb_handler(checkbox, VAR):
         global all_chars
-        if checkbox.value and VAR not in all_chars:
-            all_chars += VAR
-        elif not checkbox.value and VAR in all_chars:
-            all_chars = all_chars.replace(VAR, '')
+        for char in VAR:
+            if checkbox.value and char not in all_chars:
+                all_chars += char
+            elif not checkbox.value and char in all_chars:
+                all_chars = all_chars.replace(char, '')
         page.update()
+    
+    def del_sim(checkbox, VAR):
+        global all_chars
+        if checkbox.value:
+            for char in VAR:
+                if char in all_chars:
+                    all_chars = all_chars.replace(char, '')
     
     def chars_selection(e):
         cb_handler(cb_numbers, NUMBERS)
         cb_handler(cb_upper, UPPER)
         cb_handler(cb_lower, LOWER)
         cb_handler(cb_symbols, SYMBOLS_BASE)
-        cb_handler(cb_similar, SIMILAR)
+        del_sim(cb_exclude_similar, SIMILAR)
         input_signs.value = all_chars
         #print(all_chars)
         generate_handler(None)
@@ -188,7 +195,7 @@ def main(page: Page):
         page.update()
     
     def validate_checkboxes(e):
-        if all([cb_numbers.value==False, cb_upper.value==False, cb_lower.value==False, cb_symbols.value==False, cb_similar.value==False]):
+        if all([cb_numbers.value==False, cb_upper.value==False, cb_lower.value==False, cb_symbols.value==False]):
             icon_button_gen.disabled = True
             icon_button_copy.disabled = True
             text_result.color = ft.colors.RED
@@ -210,7 +217,7 @@ def main(page: Page):
     cb_upper.on_change = checkboh_handler
     cb_lower.on_change = checkboh_handler
     cb_symbols.on_change = checkboh_handler
-    cb_similar.on_change = checkboh_handler
+    cb_exclude_similar.on_change = checkboh_handler
     
     input_length.on_change = lenght_change_input
     slider_length.on_change = lenght_change_slider
@@ -231,7 +238,7 @@ def main(page: Page):
         
         #Row([Column([numbers, upper, lower, symbols_base, similar], spacing=0, horizontal_alignment="start")], alignment="center"),
         # Row([
-        #     Column([cb_numbers, cb_upper, cb_lower, cb_symbols, cb_similar], spacing=0, horizontal_alignment="end"),
+        #     Column([cb_numbers, cb_upper, cb_lower, cb_symbols], spacing=0, horizontal_alignment="end"),
         #     Column([text_numbers, text_upper, text_lower, text_symbols_base, text_similar], spacing=12), 
         #     ], spacing=0, alignment="center"),
         )
