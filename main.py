@@ -40,7 +40,7 @@ def main(page: Page):
     cb_exclude_similar = checkbox_signs("Exclude similar", value_cond=True)
     
     def text_signs(text):
-        return Text(text, color=ft.colors.with_opacity(0.5, ft.colors.PRIMARY))
+        return Text(text, font_family="MonaspaceNeon", color=ft.colors.with_opacity(0.5, ft.colors.SECONDARY))
     
     text_numbers = text_signs('0-9')
     text_upper = text_signs('A-Z')
@@ -111,11 +111,12 @@ def main(page: Page):
         #width=400,
         )
     
+    icon_rate = ft.Icon(name=None)
+    conteiner_icon_rate = Container(content=icon_rate, padding=ft.padding.only(right=10))
     text_result = Text(f'{result}', font_family="MonaspaceNeon", selectable=True)
-    conteiner_result_text = Container(content=text_result, alignment=ft.alignment.center, width=200)
+    conteiner_result_text = Container(content=text_result, alignment=ft.alignment.center, width=170)
     conteiner_result = Container(
-        content=Row([conteiner_result_text, icon_button_gen, icon_button_copy], alignment='end', spacing=0),
-        #width=300,
+        content=Row([conteiner_icon_rate, conteiner_result_text, icon_button_gen, icon_button_copy], alignment='end', spacing=0),
         padding=10,
         border_radius=10,
         alignment=ft.alignment.center_right,
@@ -195,6 +196,7 @@ def main(page: Page):
             global result
             result = generate_password(length, all_chars)
             text_result.value = result
+        difficulty_rating(result)
         #print(result)
         page.update()
     
@@ -216,6 +218,32 @@ def main(page: Page):
     
     def copy_result(e):
         page.set_clipboard(result)
+    
+    def dif_rate(icon, color):
+        opas = 0.8
+        icon_rate.name=icon
+        icon_rate.color=ft.colors.with_opacity(opas, color)
+        conteiner_result.border=ft.border.all(2, ft.colors.with_opacity(opas, color))
+        conteiner_result.bgcolor=ft.colors.with_opacity(0.1, color)
+        #page.theme = ft.Theme(color_scheme_seed=color)
+    
+    def rate_weak():
+        dif_rate(ft.icons.DANGEROUS_ROUNDED, ft.colors.RED)
+    
+    def rate_medium():
+        dif_rate(ft.icons.WARNING_ROUNDED, ft.colors.AMBER)
+    
+    def rate_strong():
+        dif_rate(ft.icons.CHECK_CIRCLE_ROUNDED, ft.colors.GREEN)
+    
+    def difficulty_rating(result):
+        if len(result) < 10:
+            rate_weak()
+        elif len(result) >= 10 and len(result) < 14:
+            rate_medium()
+        elif len(result) >= 14:
+            rate_strong()
+    
     
     cb_numbers.on_change = checkboh_handler
     cb_upper.on_change = checkboh_handler
