@@ -28,6 +28,7 @@ def main(page: Page):
     page.window_min_height = 500
     page.window_min_width = 300
     page.window_always_on_top = True # for development
+    page.fonts = {"MonaspaceNeon": "/fonts/MonaspaceNeon-Regular.otf"}
     
     def checkbox_signs(text, value_cond=True):
         return Checkbox(label=text, value=value_cond, label_position='right')
@@ -110,12 +111,14 @@ def main(page: Page):
         #width=400,
         )
     
-    text_result = Text(f'{result}', font_family="Menlo", selectable=True)
-    
+    text_result = Text(f'{result}', font_family="MonaspaceNeon", selectable=True)
+    conteiner_result_text = Container(content=text_result, alignment=ft.alignment.center, width=200)
     conteiner_result = Container(
-        content=Row([text_result, icon_button_gen, icon_button_copy], spacing=0),
+        content=Row([conteiner_result_text, icon_button_gen, icon_button_copy], alignment='end', spacing=0),
+        #width=300,
         padding=10,
         border_radius=10,
+        alignment=ft.alignment.center_right,
         border=ft.border.all(2, ft.colors.with_opacity(0.5, ft.colors.PRIMARY)),
         #bgcolor=ft.colors.with_opacity(0.1, ft.colors.PRIMARY)
         )
@@ -192,6 +195,7 @@ def main(page: Page):
             global result
             result = generate_password(length, all_chars)
             text_result.value = result
+        #print(result)
         page.update()
     
     def validate_checkboxes(e):
@@ -244,4 +248,4 @@ def main(page: Page):
         )
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.app(target=main, assets_dir="assets")
