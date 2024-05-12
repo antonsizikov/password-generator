@@ -117,7 +117,7 @@ def main(page: Page):
     text_result = Text(f'{result}', font_family="MonaspaceNeon", selectable=True)
     conteiner_result_text = Container(content=text_result, alignment=ft.alignment.center, width=170)
     conteiner_result = Container(
-        content=Row([conteiner_icon_rate, text_result, icon_button_gen, icon_button_copy], alignment='end', spacing=0),
+        content=Row([conteiner_icon_rate, conteiner_result_text, icon_button_gen, icon_button_copy], alignment='end', spacing=0),
         padding=10,
         border_radius=10,
         alignment=ft.alignment.center_right,
