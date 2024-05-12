@@ -23,7 +23,7 @@ def main(page: Page):
     page.title = "Password generator"
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
-    page.spacing = 30
+    page.spacing = 15
     page.window_height = 600
     page.window_width = 400
     page.window_min_height = 500
@@ -288,17 +288,20 @@ def main(page: Page):
     
     page.add(
         Row([conteiner_result], alignment="center"),
-        #Row([icon_button_gen, icon_button_copy], alignment="center"),
+        Row([Column([slider_length, input_length], spacing=0, horizontal_alignment="center")], alignment="center"),
         Row([table_checkboxes], alignment="center"),
-        Row([Column([input_length, slider_length], spacing=0, horizontal_alignment="center")], alignment="center"),
         #Row([input_signs], alignment="center"),
+        #Row([colorized_results], alignment="center"),
+        
+        # Old Designs
         
         #Row([Column([numbers, upper, lower, symbols_base, similar], spacing=0, horizontal_alignment="start")], alignment="center"),
+        
         # Row([
         #     Column([cb_numbers, cb_upper, cb_lower, cb_symbols], spacing=0, horizontal_alignment="end"),
         #     Column([text_numbers, text_upper, text_lower, text_symbols_base, text_similar], spacing=12), 
         #     ], spacing=0, alignment="center"),
-        #Row([colorized_results], alignment="center"),
+        
         )
 
 if __name__ == "__main__":
