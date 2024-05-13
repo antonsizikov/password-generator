@@ -24,10 +24,11 @@ def main(page: Page):
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
     page.spacing = 15
+    page.padding = 0
     page.window_height = 600
     page.window_width = 400
     page.window_min_height = 500
-    page.window_min_width = 300
+    page.window_min_width = 350
     #page.window_always_on_top = True # for development
     page.fonts = {"MonaspaceNeon": "/fonts/MonaspaceNeon-Regular.otf"}
     
@@ -120,6 +121,7 @@ def main(page: Page):
         content=Row([conteiner_icon_rate, conteiner_result_text, icon_button_gen, icon_button_copy], alignment='end', spacing=0),
         padding=10,
         border_radius=10,
+        height=80,
         alignment=ft.alignment.center_right,
         border=ft.border.all(2, ft.colors.with_opacity(0.5, ft.colors.PRIMARY)),
         #bgcolor=ft.colors.with_opacity(0.1, ft.colors.PRIMARY)
