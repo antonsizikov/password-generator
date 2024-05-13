@@ -28,7 +28,7 @@ def main(page: Page):
     page.window_width = 400
     page.window_min_height = 500
     page.window_min_width = 300
-    page.window_always_on_top = True # for development
+    #page.window_always_on_top = True # for development
     page.fonts = {"MonaspaceNeon": "/fonts/MonaspaceNeon-Regular.otf"}
     
     def checkbox_signs(text, value_cond=True):
