@@ -1,0 +1,16 @@
+{
+    "name": "Password generator",
+    "short_name": "PassGen",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Simple application for generating secure passwords.",
+    "icons": [
+      {
+        "src": "icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
