@@ -174,12 +174,12 @@ def main(page: Page):
         if input_length.value == '':
             length = 4
             slider_length.value = 4
-            input_length.value = '4'
+            #input_length.value = '4'
             input_length.error_text = '4 min.'
         elif int(input_length.value) < 4:
             length = 4
             slider_length.value = 4
-            input_length.value = '4'
+            #input_length.value = '4'
             input_length.error_text = '4 min.'
         elif int(input_length.value) >= 4:
             length = int(input_length.value)
