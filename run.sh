@@ -5,4 +5,5 @@ export FLET_SERVER_PORT=9111
 
 BASEDIR=$(dirname "$0")
 
+source ../.venv/bin/activate
 python3.12 ${BASEDIR}/main.py
