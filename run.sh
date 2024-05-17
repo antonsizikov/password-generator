@@ -5,4 +5,4 @@ export FLET_SERVER_PORT=9111
 
 BASEDIR=$(dirname "$0")
 
-python ${BASEDIR}/main.py
+python3.12 ${BASEDIR}/main.py
