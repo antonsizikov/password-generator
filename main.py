@@ -25,10 +25,10 @@ def main(page: Page):
     page.horizontal_alignment = "center"
     page.spacing = 15
     page.padding = 0
-    page.window_height = 600
-    page.window_width = 400
-    page.window_min_height = 500
-    page.window_min_width = 350
+    page.window.height = 600
+    page.window.width = 400
+    page.window.min_height = 500
+    page.window.min_width = 350
     #page.window_always_on_top = True # for development
     page.fonts = {"MonaspaceNeon": "/fonts/MonaspaceNeon-Regular.otf"}
     
