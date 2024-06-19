@@ -96,6 +96,8 @@ def main(page: Page):
     
     slider_length = Slider(min=4, max=28, value=length, divisions=24, label="{value}")
     input_length = TextField(
+        border_color=ft.colors.ON_BACKGROUND,
+        focused_border_color=ft.colors.PRIMARY,
         label="Length", 
         value=f"{length}", 
         text_align="right", 
