@@ -129,19 +129,21 @@
   }
   .result-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     margin: 20px;
     padding: 10px;
     border-radius: 5px;
     background-color: var(--pico-code-background-color);
-    max-width: 400px;
+    width: 22em;
   }
   .result-text {
-    font-size: 18px;
-    margin-right: 10px;
+    font-size: 1.4em;
+    max-height: 3.7em;
+    margin-right: 0.3em;
     word-break: break-word;
+    overflow-y: auto;
+    flex-grow: 1;
+    text-align: center;
   }
   .slider-length {
     width: 150px;
@@ -149,11 +151,15 @@
   .length-container {
     text-align: center;
   }
+  .input-length {
+    font-size: 1.5em;
+  }
   button {
     padding: 3px;
     width: auto;
+    flex-shrink: 0;
   }
   label {
-    font-size: 16px;
+    font-size: 1.25em;
   }
 </style>
