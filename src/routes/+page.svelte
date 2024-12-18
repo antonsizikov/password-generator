@@ -42,6 +42,17 @@
     let needsRegeneration = true;
     while (needsRegeneration) {
       needsRegeneration = false;
+      
+      if (length < 4) {
+        return `Length must be at least 4`;
+      }
+      if (length > 9999) {
+        return `Length must be at most 9999`;
+      }
+      if (allSymbols.length === 0) {
+        return `Check at least one option`;
+      }
+
       if (cbNumbers && !numbers.split('').some(c => pass.includes(c))) {
         needsRegeneration = true;
       }
@@ -90,7 +101,7 @@
 
   <input type="range" bind:value={length} min="4" max="28" class="slider-length"/>
   <div class="length-container">
-    <input type="number" bind:value={length} min="4" max="999" class="input-length">
+    <input type="number" bind:value={length} min="4" max="9999" class="input-length">
     <small>Length</small>
   </div>
   
