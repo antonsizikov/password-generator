@@ -141,9 +141,9 @@
   .result-container {
     display: flex;
     align-items: center;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 5px;
+    margin-bottom: 1.2em;
+    padding: 0.8em;
+    border-radius: 0.5em;
     background-color: var(--pico-code-background-color);
     width: 22em;
   }
@@ -157,7 +157,7 @@
     text-align: center;
   }
   .slider-length {
-    width: 150px;
+    width: 12em;
   }
   .length-container {
     text-align: center;
@@ -166,7 +166,7 @@
     font-size: 1.5em;
   }
   button {
-    padding: 3px;
+    padding: 0.2em 0.5em;
     width: auto;
     flex-shrink: 0;
   }
