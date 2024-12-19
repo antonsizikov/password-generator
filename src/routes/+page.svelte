@@ -26,7 +26,7 @@
     return symbols
   });
 
-  $inspect(allSymbols)
+  let allSymbolsLength = $derived(allSymbols.length);
 
   let result = $derived.by(() => {
     let pass = '';
@@ -140,6 +140,7 @@
       1Ii0Oo
     </label>
   </div>
+  <small>Total: <b>{allSymbolsLength}</b></small>
 </main>
 
 <style>
