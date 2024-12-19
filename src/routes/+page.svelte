@@ -107,9 +107,14 @@
 
 <main class="container">
   <div class="result-container">
-    <span class="difficulty">{@html difficulty}</span>
+    <button aria-label="difficulty" class="difficulty" style="cursor: default">{@html difficulty}</button>
     <span class="result-text">{@html resultColor}</span>
-    <button class="secondary copy" onclick={copy}>Copy</button>
+    <!-- <button aria-label="regenerate">
+      <svg xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 -960 960 960" fill="var(--pico-primary)"><path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-70q0-17 11.5-28.5T760-800q17 0 28.5 11.5T800-760v200q0 17-11.5 28.5T760-520H560q-17 0-28.5-11.5T520-560q0-17 11.5-28.5T560-600h128q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q68 0 124.5-34.5T692-367q8-14 22.5-19.5t29.5-.5q16 5 23 21t-1 30q-41 80-117 128t-169 48Z"/></svg>
+    </button> -->
+    <button aria-label="copy" onclick={copy}>
+      <svg xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 -960 960 960" fill="var(--pico-primary)"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-520q0-17 11.5-28.5T160-720q17 0 28.5 11.5T200-680v520h400q17 0 28.5 11.5T640-120q0 17-11.5 28.5T600-80H200Zm160-240v-480 480Z"/></svg>
+    </button>
   </div>
 
   <input type="range" bind:value={length} min="4" max="28" class="slider-length"/>
@@ -159,7 +164,7 @@
     padding: 0.8em;
     border-radius: 0.5em;
     background-color: var(--pico-code-background-color);
-    width: 22em;
+    width: 22.5em;
   }
   .result-text {
     font-size: 1.4em;
@@ -181,7 +186,10 @@
     font-size: 1.5em;
   }
   button {
-    padding: 0.2em 0.5em;
+    padding: 0;
+    border-radius: 2em;
+    background-color: var(--pico-code-background-color);
+    border-color: var(--pico-code-background-color);
     width: auto;
     flex-shrink: 0;
   }
