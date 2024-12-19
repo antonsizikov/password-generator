@@ -88,6 +88,18 @@
     return html;
   })
 
+  let difficulty = $derived.by(() => {
+    let html = '';
+    if (result.length >= 14) {
+      html = `<svg xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 -960 960 960" fill="#398712"><path d="m424-408-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-408Zm56 328q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`;
+    } else if (result.length >= 10) {
+      html = `<svg xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 -960 960 960" fill="#F2DF0D"><path d="M109-120q-11 0-20-5.5T75-140q-5-9-5.5-19.5T75-180l370-640q6-10 15.5-15t19.5-5q10 0 19.5 5t15.5 15l370 640q6 10 5.5 20.5T885-140q-5 9-14 14.5t-20 5.5H109Zm69-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm0-120q17 0 28.5-11.5T520-400v-120q0-17-11.5-28.5T480-560q-17 0-28.5 11.5T440-520v120q0 17 11.5 28.5T480-360Zm0-100Z"/></svg>`;
+    } else {
+      html = `<svg xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 -960 960 960" fill="#D24317"><path d="M363-120q-16 0-30.5-6T307-143L143-307q-11-11-17-25.5t-6-30.5v-234q0-16 6-30.5t17-25.5l164-164q11-11 25.5-17t30.5-6h234q16 0 30.5 6t25.5 17l164 164q11 11 17 25.5t6 30.5v234q0 16-6 30.5T817-307L653-143q-11 11-25.5 17t-30.5 6H363Zm1-80h232l164-164v-232L596-760H364L200-596v232l164 164Zm116-224 86 86q11 11 28 11t28-11q11-11 11-28t-11-28l-86-86 86-86q11-11 11-28t-11-28q-11-11-28-11t-28 11l-86 86-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l86 86-86 86q-11 11-11 28t11 28q11 11 28 11t28-11l86-86Zm0-56Z"/></svg>`;
+    }
+    return html;
+  })
+
   function copy() {
     navigator.clipboard.writeText(result);
   }
@@ -95,6 +107,7 @@
 
 <main class="container">
   <div class="result-container">
+    <span class="difficulty">{@html difficulty}</span>
     <span class="result-text">{@html resultColor}</span>
     <button class="secondary copy" onclick={copy}>Copy</button>
   </div>
@@ -150,6 +163,7 @@
   .result-text {
     font-size: 1.4em;
     max-height: 3.7em;
+    margin-left: 0.3em;
     margin-right: 0.3em;
     word-break: break-word;
     overflow-y: auto;
