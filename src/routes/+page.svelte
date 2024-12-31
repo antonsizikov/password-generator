@@ -197,6 +197,7 @@
     border-color: var(--pico-code-background-color);
     width: auto;
     flex-shrink: 0;
+    box-shadow: none;
   }
   label {
     font-size: 1.25em;
