@@ -11,7 +11,7 @@
   let cbLower = $state(true);
   let cbUpper = $state(true);
   let cbSymbolsSimple = $state(true);
-  let cdSame = $state(false);
+  let cbSame = $state(false);
 
   let allSymbols = $derived.by(() => {
     let symbols = (cbNumbers ? numbers : '')
@@ -19,7 +19,7 @@
     + (cbLower ? lower : '')
     + (cbSymbolsSimple ? symbolsSimple : '')
 
-    if (!cdSame) {
+    if (!cbSame) {
       symbols = symbols.replace(new RegExp('[' + same + ']', 'g'), '');
     }
 
@@ -146,7 +146,7 @@
       !@#$%^&*
     </label>
     <label>
-      <input type="checkbox" name="dothraki" bind:checked={cdSame} />
+      <input type="checkbox" name="dothraki" bind:checked={cbSame} />
       1Ii0Oo
     </label>
   </div>
